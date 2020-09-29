@@ -1,0 +1,211 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title>Report</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static './img/core-img/favicon.png' %}">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+
+<body>
+   <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- **** Header Area Start **** -->
+    <header class="header-area">
+        <!-- Top Header Area Start -->
+        
+        <!-- Top Header Area End -->
+
+        <!-- Main Header Start -->
+        <div class="main-header-area animated">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Classy Menu -->
+                    <nav class="classy-navbar justify-content-between" id="rehomesNav">
+
+                        <!-- Logo -->
+                        <a class="nav-brand" href='home'><img src="{% static './img/core-img/precure.png' %}" alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+                            <!-- Menu Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul id="nav">
+                                    <li class="active"><a href='/'>Home</a></li>
+                                    <li class="active"><a href='home'>Detector</a></li>
+				                    <li class="active"><a href="report">Report</a></li>
+                                    </ul>
+                                            
+
+
+                                <!-- Contact btn -->
+                                <div class="contact-btn mt-3 mt-lg-0 ml-3 ml-lg-5">
+                                    <a href="logout">Log Out</a>
+                                </div>
+                                <div class="contact-btn mt-3 mt-lg-0 ml-3 ml-lg-5">
+                                    <p>Welcome "{{user.username}}"</p>
+                                </div>
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="breadcrumb-area bg-img bg-overlay-3 jarallax wow fadeInUp" data-wow-delay="200ms" style="background-image: url(img/bg-img/30.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcrumb-content">
+
+                        <h2 class="page-title">Report </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- **** Header Area End **** -->
+
+    <!-- **** Breadcrumb Area Start **** -->
+
+    <!-- **** Breadcrumb Area End **** -->
+
+    <!-- **** Blog Area Start **** -->
+    <div class="rehomes-news-area section-padding-100-0">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-12 col-lg-8">
+                    <div class="blog-news-area">
+    <!-- **** Agent List Area Start **** -->
+    <div class="rehomes-agent-list-area section-padding-100-60">
+        
+        <div class="container">
+
+            <div class="row">
+
+                <!-- Single Agent Area -->
+                {% for i in report %}
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-agent-area wow fadeInUp" data-wow-delay="200ms">
+                        <!-- Agent Thumb -->
+                        
+                        <div class="single-agent-thumb">
+                            <img src="{% static 'img/bg-img/d2.jpg' %}" alt="">
+                        </div>
+                        <!-- Agent Info -->
+                        
+                        <div class="agent-info">
+                            <p> <b>Disease : </b>{{i.disease}}</p>
+                            <p> <b>Probability :</b> {{i.probability}} %</p>
+                            <p><b>Name :</b>  {{i.name}}</p>
+                            <p> <b>Age :</b> {{i.age}}</p>
+                            <p> <b>Gender :</b> {{i.gender}}</p>
+                            <p> <b>Affected Area :</b> {{i.area}}</p>
+                            <p> <b>Submitted at :</b> {{i.date}}</p>
+                            <a href="find" style="    overflow: visible; display: flex;
+								justify-content: center;
+								align-items: center;
+								padding: 0 20px;
+								min-width: 160px;
+								height: 50px;
+								background-color: #92b533;
+								border-radius: 25px;
+								font-family: Poppins-Regular;
+								font-size: 16px;
+								color: #fff;
+								line-height: 1.2;
+								transition: all 0.4s;
+								float:right;">
+								<span>
+								Submit Your Report
+								</span>
+								</a>
+                        </div>
+                        
+                        <!-- Agent Social Info -->
+
+                    </div>
+                   
+                </div>
+                {% endfor %}
+         
+            </div>
+            
+        </div>
+    </div>
+    <!-- **** Agent List Area End **** -->
+                    </div>
+
+                    <!-- Pagination and Page Counter Area -->
+                    <div class="rehomes-pagination-counter mb-100 d-flex flex-wrap justify-content-between align-items-center wow fadeInUp" data-wow-delay="200ms">
+                        <!-- Pagination -->
+                        
+
+                        <!-- Page Counter -->
+                        
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="rehomes-sidebar-area">
+                       
+
+
+                        <!-- Single Properties Widget Area -->
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- **** Blog Area End **** -->
+
+    <!-- **** Partner Area Start **** -->
+    
+    <!-- **** Partner Area End **** -->
+
+    <!-- **** Footer Area Start **** -->
+    
+    <!-- **** Footer Area End **** -->
+
+    <!-- **** All JS Files ***** -->
+    <!-- jQuery 2.2.4 -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <!-- Popper -->
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <!-- Bootstrap -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- All Plugins -->
+    <script src="{% static 'js/rehomes.bundle.js' %}"></script>
+    <!-- Active -->
+    <script src="{% static 'js/default-assets/active.js' %}"></script>
+
+</body>
+
+</html>

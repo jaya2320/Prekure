@@ -1,0 +1,266 @@
+{% load static %}
+{% static "images" as baseUrl %}
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title>Search Doctor</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static './img/core-img/favicon.png' %}">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+
+</head>
+
+<body>
+ 
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- **** Header Area Start **** -->
+    <header class="header-area">
+        <!-- Top Header Area Start -->
+        
+        <!-- Top Header Area End -->
+
+        <!-- Main Header Start -->
+        <div class="main-header-area animated">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Classy Menu -->
+                    <nav class="classy-navbar justify-content-between" id="rehomesNav">
+
+                        <!-- Logo -->
+                        <a class="nav-brand" href="home"><img src="{% static './img/core-img/precure.png' %}" alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+                            <!-- Menu Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul id="nav">
+                                    <li class="active"><a href='/'>Home</a></li>
+                                    <li class="active"><a href='home'>Detector</a></li>
+
+                                    <li class="active"><a href="report">Report</a></li>
+                                    </ul>
+                                            
+
+
+                                <!-- Contact btn -->
+                                <div class="contact-btn mt-3 mt-lg-0 ml-3 ml-lg-5">
+                                    <a href="logout">Log Out</a>
+                                </div>
+                                <div class="contact-btn mt-3 mt-lg-0 ml-3 ml-lg-5">
+                                    <p>Welcome "{{user.username}}"</p>
+                                </div>
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- **** Header Area End **** -->
+    
+    
+    <!-- **** Welcome Maps Area Start **** -->
+    <div class="welcome-area">
+        <div class="google-maps">
+            <div id='map' style='width: 100%; height: 100%;'></div>
+            <script>
+                mapboxgl.accessToken = '{{mapbox_access_token}}';
+                var map = new mapboxgl.Map({
+                container: 'map',
+                
+                style: 'mapbox://styles/mapbox/satellite-streets-v11',
+                center:{{corn}},
+                zoom:{{zoom}}
+                });
+                
+                    
+                {% for i in loc %}
+                var marker = new mapboxgl.Marker()
+                .setLngLat({{i}})
+                
+                .addTo(map);
+               {% endfor %}
+</script>
+                    
+                   
+                
+        </div>
+    </div>
+    <!-- **** Welcome Maps Area End **** -->
+
+    <!-- **** Location Search Form Area **** -->
+    <div class="rehomes-search-form-area">
+        <div class="container">
+            <div class="rehomes-search-form">
+                <form  method="post" action="searching">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-12 col-lg-10">
+                            <div class="row">
+                               
+
+                                <div class="col-12 col-md-6 col-lg-3">
+                                    <select name="city" id="city" class="form-control">
+                                        <option value="00">State</option>
+                                        <option value="01">Delhi</option>
+                                        <option value="02">Uttar Pradesh</option>
+                                        
+                                    </select>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-2">
+                            <button type="submit" class="btn rehomes-search-btn">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- **** Location Search Form Area **** -->
+
+    <!-- **** Breadcrumb Area Start **** -->
+    s
+    <!-- **** Breadcrumb Area End **** -->
+
+    <!-- **** Sale area Start **** -->
+    <section class="rehome-house-sale-area section-padding-80">
+        <form action ="submit" method="post">
+        <div class="container">
+            <div class="row">
+                
+                    {% csrf_token %}
+                {% for i in doctor %}
+                <!-- Single Property Area -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-property-area wow fadeInUp" data-wow-delay="200ms">
+                       
+                        <!-- Property Thumb -->
+                        <div class="property-thumb">
+                            <img src="{{i.img.url}}"  alt="">
+                        </div>
+
+                        <!-- Property Description -->
+                        <div class="property-desc-area">
+                            <!-- Property Title & Seller -->
+                            <div class="property-title-seller d-flex justify-content-between">
+                                
+                                <!-- Title -->
+                                <div class="property-title">
+                                    <h4>{{i.address}}</h4>
+                                    <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{i.area}}, {{i.state}}</p>
+                                </div>
+                                <!-- Seller -->
+                                <div class="property-seller">
+                                    <p>Phone Number:</p>
+                                    <h6>{{i.phone_number}}</h6>
+                                </div>
+                            </div>
+                            <!-- Property Info -->
+                            <div class="property-info-area d-flex flex-wrap">
+                                <p>Name: <span>{{i.name}}</span></p>
+                                <p>Experience: <span>{{i.experience}}</span></p>
+                                <p>Age: <span>{{i.age}}</span></p>
+                                
+                            </div>
+                        </div>
+
+                        <!-- Property Price -->
+                        <div class="property-price">
+                            <p class="badge-rent">Fees : {{i.fees}}</p>
+                            <button type="submit" class="price">Submit Your Report</button>
+                        </div>
+                    </div>
+                </div>
+               {% endfor %}
+            </form>
+            </div>
+
+            <div class="row">
+                <!-- Pagination and Page Counter Area -->
+                <div class="col-12">
+                    <div class="rehomes-pagination-counter mt-15 d-flex flex-wrap justify-content-between align-items-center wow fadeInUp" data-wow-delay="200ms">
+                        <!-- Pagination -->
+                        <nav class="rehomes-pagination">
+                            <ul class="pagination">
+                                <li class="page-item"><a class="page-link" href="{% static '#' %}">1</a></li>
+                                <li class="page-item"><a class="page-link active" href="{% static '#' %}">2</a></li>
+                                <li class="page-item"><a class="page-link" href="{% static '#' %}">3</a></li>
+                                <li class="page-item"><a class="page-link" href="{% static '#' %}">Next <i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </nav>
+
+                        <!-- Page Counter -->
+                        <div class="page-counter">
+                            <p>Page <span>1</span> of <span>60</span> results</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- **** Sale Area End **** -->
+
+    <!-- **** Partner Area Start **** -->
+    
+    <!-- **** Partner Area End **** -->
+
+    <!-- **** Footer Area Start **** -->
+
+
+        <!-- Copywrite Area -->
+        
+
+                    <!-- Footer Menu -->
+
+    </footer>
+    <!-- **** Footer Area End **** -->
+
+    <!-- **** All JS Files ***** -->
+    <!-- jQuery 2.2.4 -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <!-- Popper -->
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <!-- Bootstrap -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- All Plugins -->
+    <script src="{% static 'js/rehomes.bundle.js' %}"></script>
+    <!-- Active -->
+    <script src="{% static 'js/default-assets/active.js' %}"></script>
+
+</body>
+
+</html>
+

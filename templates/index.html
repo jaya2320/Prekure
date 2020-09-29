@@ -1,0 +1,264 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animsition/css/animsition.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+<!--===============================================================================================-->
+<meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title>Detector</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static './img/core-img/favicon.png' %}">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+<body>
+
+
+
+	{% if messages %}
+	{% for message in messages %}
+	 {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+
+	{% endfor %}
+
+{% endif %}
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- **** Header Area Start **** -->
+    <header class="header-area">
+        <!-- Top Header Area Start -->
+        
+        <!-- Top Header Area End -->
+
+        <!-- Main Header Start -->
+        <div class="main-header-area animated">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Classy Menu -->
+                    <nav class="classy-navbar justify-content-between" id="rehomesNav">
+
+                        <!-- Logo -->
+                        <a class="nav-brand" href='home'><img src="{% static './img/core-img/precure.png' %}" alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+                            <!-- Menu Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul id="nav">
+                                    <li class="active"><a href='/'>Home</a></li>
+				   <li class="active"><a href="report">Report</a></li>
+                                    </ul>
+                                            
+
+
+                                <!-- Contact btn -->
+                                <div class="contact-btn mt-3 mt-lg-0 ml-3 ml-lg-5">
+                                    <a href="logout">Log Out</a>
+								</div>
+								<div class="contact-btn mt-3 mt-lg-0 ml-3 ml-lg-5">
+                                    <p>Welcome "{{user.username}}"</p>
+                                </div>
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+	<div class="container-contact100">
+		
+		<div class="contact100-map"  ></div>
+		
+		<div class="wrap-contact100">
+			<div class="contact100-form-title">
+				<span class="contact100-form-title-1">
+					Skin Cancer Detector
+				</span>
+
+				<span class="contact100-form-title-2">
+					Please fill the form below for analysis.
+				</span>
+			</div>
+
+			<form class="contact100-form validate-form" name="myform" action="result" method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+				<div class="wrap-input1001 validate-input" data-validate="Name is required">
+					<span class="label-input100">Full Name :</span>
+					<input class="input100" type="text" name="name" placeholder="Enter full name">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input1001 validate-input" data-validate="Age is required">
+					<span class="label-input100">Your Age :</span>
+					<input class="input100" type="text" name="age" placeholder="Enter Your Age">
+					<span class="focus-input100"></span>
+				</div>
+				<div class="wrap-input100 validate-input" data-validate="Gender is required">
+					<span class="label-input100">Gender :</span>
+					<select name="gender">
+						{% for i in gender %}
+						<option disabled selected value style="display:none;">Select Your Gender</option>
+						<option value='{{i}}'>{{i}}</option>
+					  {% endfor %}
+					</select></br> 
+					<span class="focus-input100"></span>
+				</div>
+				<div class="wrap-input100 validate-input " data-validate="Problem Area is required">
+					<label class="label-input100" style="
+					font-family: Poppins-Regular;
+  font-size: 15px;
+  color: #808080;
+  line-height: 0;
+  text-align: right;
+
+  position: absolute;
+  top: 14px;
+  left: -120px;
+  width: 80px;">Affected_Area </label>
+					
+					<select name="area">
+						{% for i in area %}
+						<option disabled selected value style="display:none;">Select Affected Area  </option>
+						<option value='{{i}}'>{{i}}</option>
+						{% endfor %}
+						
+					  </select></br>
+					  <span class="focus-input100"></span>
+				</div>
+				
+				<div class="wrap-input100 validate-input" data-validate="Pitcure is required">
+					<span class="label-input100">Image:</span>
+					<input class="input100" type="File" accept=".jpeg,.png,.jpg" name="filepath" placeholder="Upload Photo">
+					<span class="focus-input100"></span>
+				</div>
+
+				<!--- <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<span class="label-input100">Email:</span>
+					<input class="input100" type="text" name="email" placeholder="Enter email addess">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Phone is required">
+					<span class="label-input100">Phone:</span>
+					<input class="input100" type="text" name="phone" placeholder="Enter phone number">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate = "Message is required">
+					<span class="label-input100">Message:</span>
+					<textarea class="input100" name="message" placeholder="Your Comment..."></textarea>
+					<span class="focus-input100"></span>
+				</div>
+				-->
+
+				<div class="container-contact100-form-btn">
+					<button class="contact100-form-btn">
+						<span>
+							Submit
+							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+						</span>
+					</button>
+				</div>
+			</form>
+
+
+
+
+		</div>
+	</div>
+
+
+
+	<div id="dropDownSelect1"></div>
+
+
+<!-- jQuery 2.2.4 -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <!-- Popper -->
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <!-- Bootstrap -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- All Plugins -->
+    
+    <!-- Active -->
+    <script src="{% static 'js/default-assets/active.js' %}"></script>
+
+
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/animsition/js/animsition.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/daterangepicker/moment.min.js' %}"></script>
+	<script src="{% static 'vendor/daterangepicker/daterangepicker.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/countdowntime/countdowntime.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes' %}"></script>
+	<script src="{% static 'js/map-custom.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'js/main.js' %}"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="{% static 'https://www.googletagmanager.com/gtag/js?id=UA-23581568-13' %}"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-23581568-13');
+	</script>
+
+</body>
+</html>

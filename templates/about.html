@@ -1,0 +1,263 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title>Welcome</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static './img/core-img/favicon.png' %}">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- **** Header Area Start **** -->
+    <header class="header-area">
+        <!-- Top Header Area Start -->
+        
+        <!-- Top Header Area End -->
+
+        <!-- Main Header Start -->
+         <div class="main-header-area animated">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Classy Menu -->
+                    <nav class="classy-navbar justify-content-between" id="rehomesNav">
+
+                        <!-- Logo -->
+                        <a class="nav-brand" href="{% static './index.html' %}"><img src="{% static './img/core-img/precure.png' %}" alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+                            <!-- Menu Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <!-- Nav Start -->
+                            {% if user.is_authenticated %}
+                            <div class="classynav">
+                                <ul id="nav">
+                                    <li class="active"><a href="/">Home</a></li>
+
+                                   
+                                    <li class="active"><a href="home">Detector</a></li>
+                                    <li class="active"><a href="report">Report</a></li>
+                                    
+                                    
+                                    </ul>
+                                            
+                                   
+
+                                <!-- Contact btn -->
+                                <div class="contact-btn mt-3 mt-lg-0 ml-3 ml-lg-5">
+                                    <a href="logout">Log Out</a>
+                                </div>
+                                <div class="contact-btn mt-3 mt-lg-0 ml-3 ml-lg-5">
+                                    <p>Welcome "{{user.username}}"</p>
+                                </div>
+                            </div>
+
+                            {% else %}
+                            <div class="classynav">
+                                <ul id="nav">
+                                    <li class="active"><a href="/">Home</a></li>
+
+                                   
+                                    
+                                    
+                                    <li class="active"><a href="enter">LogIn</a></li>
+                                    <li class="active"><a href="register">SignUp</a></li>
+                                    </ul>
+                                            
+                                   
+
+                                <!-- Contact btn -->
+                                
+                            </div>
+                            {% endif %}
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- **** Header Area End **** -->
+
+    <!-- **** Breadcrumb Area Start **** -->
+    <div class="breadcrumb-area bg-img bg-overlay-3 wow fadeInUp" data-wow-delay="200ms" style="background-image: url(img/bg-img/30.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcrumb-content">
+                        
+                        <h2 class="page-title">About Us</h2>
+                        {% if user.is_authenticated %}
+                        <form action="home" method="post">
+                            {% csrf_token %}
+                              <button type="submit" style="    overflow: visible; display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    min-width: 160px;
+    height: 50px;
+    background-color: #92b533;
+    border-radius: 25px;
+    font-family: Poppins-Regular;
+    font-size: 16px;
+    color: #fff;
+    line-height: 1.2;
+transition: all 0.4s;
+float:right;">
+  <span>
+Get Started
+</span>
+</button>
+</form>
+
+{% else %}
+
+<form action="enter" method="post">
+    {% csrf_token %}
+      <button type="submit" style="    overflow: visible; display: flex;
+justify-content: center;
+align-items: center;
+padding: 0 20px;
+min-width: 160px;
+height: 50px;
+background-color: #92b533;
+border-radius: 25px;
+font-family: Poppins-Regular;
+font-size: 16px;
+color: #fff;
+line-height: 1.2;
+transition: all 0.4s;
+float:right;">
+<span>
+Get Started
+</span>
+</button>
+</form>
+
+{% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- **** Breadcrumb Area End **** -->
+
+    <!-- **** About Us Area Start **** -->
+    <section class="about-us-area section-padding-100-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="about-us-title mb-40 wow fadeInUp" data-wow-delay="200ms">
+                        <h2 style="color:#fff;">Hello! Welcome to Pre<span>Cure.</span></h2>
+                        <p style="color:#d9e6fa;">Skin cancer is a dangerous and widespread disease. Each year there are approximately 5.4 million new 
+cases of skin cancer are recorded in USA alone. The mortality rate of this disease is expected to rise in the next decade. 
+The survival rate is less than 14% if diagnosed in later stages. However, if the skin cancer is detected at early stages then the 
+survival rate is nearly 97% . This demands the early detection of skin cancer. 
+</p>
+<h2 style="color:#92b533;">       Detect it in 3 Easy Steps      </h2>         
+
+           </div>
+                </div>
+
+                <!-- Single About Area -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-about-content wow fadeInUp" data-wow-delay="200ms">
+                        <!-- Thumb -->
+                        <div class="single-about-thumb">
+                            <img src="{% static 'img/bg-img/ss1.png' %}" alt="">
+                        </div>
+                        <h4 style="color:#fff;"><span>1. </span>Enter Your Details</h4>
+                        <p style="color:#d9e6fa;">You need to enter your details for submission of report and the image of affected area for analysis.</p>
+                    </div>
+                </div>
+
+                <!-- Single About Area -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-about-content wow fadeInUp" data-wow-delay="200ms">
+                        <!-- Thumb -->
+                        <div class="single-about-thumb">
+                            <img src="{% static 'img/bg-img/ss2.png' %}" alt="">
+                        </div>
+                         <h4 style="color:#fff;"><span>2. </span>Get Your Report</h4>
+			<p style="color:#d9e6fa;">Based on the uploaded image your result will be displayed which will going to inform you about your related allergy with the probability
+of our prediction. </p>
+                        </div>
+                </div>
+
+                <!-- Single About Area -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-about-content wow fadeInUp" data-wow-delay="200ms">
+                        <!-- Thumb -->
+                        <div class="single-about-thumb">
+                            <img src="{% static 'img/bg-img/ss3.png' %}" alt="">
+                        </div>
+                         <h4 style="color:#fff;"><span>3. </span>Find the Doctor's near you</h4>
+                        <p style="color:#d9e6fa;">You can find and submit you report to the doctors around you.</p>
+			</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- **** About Us Area End **** -->
+
+    <!-- **** Testimonials Area Start **** -->
+
+    <!-- **** Testimonials Area End **** -->
+
+    <!-- **** Choose Us Area Start **** -->
+    
+    <!-- **** Choose Us Area End **** -->
+
+    <!-- **** Partner Area Start **** -->
+   
+    <!-- **** Partner Area End **** -->
+
+    <!-- **** Footer Area Start **** -->
+    <footer class="footer-area bg-img bg-overlay-2 section-padding-100-0" style="background-image: url(img/bg-img/17.jpg);">
+        <!-- Main Footer Area -->
+        
+
+        <!-- Copywrite Area -->
+        
+    </footer>
+    <!-- **** Footer Area End **** -->
+
+    <!-- **** All JS Files ***** -->
+    <!-- jQuery 2.2.4 -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <!-- Popper -->
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <!-- Bootstrap -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- All Plugins -->
+    <script src="{% static 'js/rehomes.bundle.js' %}"></script>
+    <!-- Active -->
+    <script src="{% static 'js/default-assets/active.js' %}"></script>
+
+</body>
+
+</html>
